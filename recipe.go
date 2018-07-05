@@ -90,7 +90,7 @@ func generateDockerfile(r Recipe) (string, error) {
 		fmt.Fprintf(&b, "RUN /usr/local/bin/pharo /var/pharo/images/default/Pharo.image %s\n", c)
 	}
 	fmt.Fprintf(&b, "FROM %s\n", r.RunTime.VM)
-	fmt.Fprint(&b, "COPY --from=configuration /var/pharo/images/default/Pharo.{image,changes} /var/pharo/images/default/\n")
+	fmt.Fprint(&b, "COPY --from=configuration /var/pharo/images/default/Pharo.image /var/pharo/images/default/Pharo.changes /var/pharo/images/default/\n")
 	fmt.Fprint(&b, "COPY run/ /var/pharo/images/default/\n")
 	fmt.Fprintf(&b, "CMD /usr/local/bin/pharo /var/pharo/images/default/Pharo.image %s\n", r.RunTime.Command)
 	return b.String(), nil

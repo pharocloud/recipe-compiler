@@ -38,7 +38,7 @@ var dockerfile = `FROM pharo/image:61 AS configuration
 COPY conf/ /var/pharo/images/default/
 RUN /usr/local/bin/pharo /var/pharo/images/default/Pharo.image st --save --quit config.st
 FROM pharo/vm:61
-COPY --from=configuration /var/pharo/images/default/Pharo.{image,changes} /var/pharo/images/default/
+COPY --from=configuration /var/pharo/images/default/Pharo.image /var/pharo/images/default/Pharo.changes /var/pharo/images/default/
 COPY run/ /var/pharo/images/default/
 CMD /usr/local/bin/pharo /var/pharo/images/default/Pharo.image --no-quit
 `
